@@ -1,0 +1,999 @@
+//zad8.9
+class StackSimple {
+    static final int MAX = 1000;
+    int top;
+    int a[] = new int[MAX]; // Maximum size of Stack
+    boolean isEmpty()
+    {
+        return (top < 0);
+    }
+    StackSimple()
+    {
+        top = -1;
+    }
+    boolean push(int x)
+    {
+        if (top >= (MAX - 1)) {
+            return false;
+        }
+        else {
+            a[++top] = x;
+            return true;
+        }
+    }
+    int pop()
+    {
+        if (top < 0) {
+            return 0;
+        }
+        else {
+            int x = a[top--];
+            return x;
+        }
+    }
+    int peek()
+    {
+        if (top < 0) {
+            return 0;
+        }
+        else {
+            int x = a[top];
+            return x;
+        }
+    }
+}
+
+
+
+
+
+
+
+//zad8.10
+
+
+
+
+
+
+
+
+List<String> list = Files.readAllLines(path, StandardCharsets.UTF_8); 
+//Dodawanie wsparcia utf-8
+
+
+
+
+package com.company;
+
+class Main {
+    public static void main(String args[])
+    {
+        StackSimple s = new StackSimple();
+        s.push(10);
+        s.push(20);
+        s.push(30);
+        System.out.println(s.pop() + " Popped from stack");
+    }
+}
+
+
+package com.company;
+
+import java.util.StringTokenizer;
+
+import javax.swing.JOptionPane;
+
+public class ONP {
+
+    public static void main(String[] args) {
+        StackSimple stck = new StackSimple();
+        double number1;
+        double number2;
+
+        String x = JOptionPane.showInputDialog("Tokens");
+        StringTokenizer str = new StringTokenizer(x);
+
+        while (str.hasMoreElements()) {
+            str.nextElement();
+            stck.push((int) str.nextElement());
+
+            for (int i = 0; i < x.length(); i++) {
+
+                switch (x.charAt(i)) {
+                    case '+':
+                        number1 = stck.pop();
+                        number2 = stck.pop();
+                        System.out.println(number1 + number2);
+                        break;
+                    case '-':
+                        number1 = stck.pop();
+                        number2 = stck.pop();
+                        System.out.println(number1 - number2);
+                        break;
+                    case '/':
+                        number1 = stck.pop();
+                        number2 = stck.pop();
+                        System.out.println(number1 / number2);
+                        break;
+                    case '*':
+                        number1 = stck.pop();
+                        number2 = stck.pop();
+                        System.out.println(number1 * number2);
+                        break;
+                }
+
+            }
+            System.out.println(stck.pop());
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+//zad9.1
+
+
+
+
+
+
+
+
+
+
+package com.company;
+
+class Main {
+    public static void main(String args[])
+    {
+        ONP oo = new ONP();
+        oo.wykonaj();
+    }
+}
+
+package com.company;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
+import java.lang.Math;
+import java.io.FileWriter;
+
+
+
+import java.io.IOException;
+
+public class ONP {
+    public  void  wykonaj() {
+
+        try {
+            File myObj = new File("/home/phabrzyk/IdeaProjects/untitled/filename");
+            Scanner myReader = new Scanner(myObj);
+            Pubkt3d [] em = new Pubkt3d[2];
+            int i=0;
+
+
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+                Pubkt3d pkt = new Pubkt3d(data.split(" ")[0],data.split(" ")[1],data.split(" ")[2]);
+                em[i]=pkt;
+                i++;
+            }
+            double d = (Math.pow((em[0].r - em[1].r),2) + Math.pow((em[0].g - em[1].g),2) + Math.pow((em[0].b - em[1].b),2));
+            d = Math.sqrt(d);
+            myReader.close();
+
+            System.out.print(d);
+
+            try {
+                FileWriter myWriter = new FileWriter("/home/phabrzyk/IdeaProjects/untitled/filenam3txt");
+                myWriter.write(String.valueOf(d));
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}
+
+
+package com.company;
+
+public class Pubkt3d {
+    double r,g,b;
+    public Pubkt3d(String a,String b,String c){
+        this.r=Double. parseDouble(a);
+        this.g=Double. parseDouble(b);
+        this.b=Double. parseDouble(c);
+        System.out.print("nowy punkt");
+    }
+}
+
+
+
+
+
+
+
+
+
+//zad 9.2
+
+
+
+
+
+
+
+
+package com.company;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.nio.file.StandardOpenOption;
+
+class Main {
+    public static void main(String args[])
+    {
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println(" Podaj numer");
+
+        String userName = myObj.nextLine();  // Read user input
+
+        int num = Integer.valueOf(userName);
+
+        Random rand = new Random();
+        int rand_int1 = rand.nextInt(1000);
+        for(int i=0;i<num;i++){
+            rand_int1 = rand.nextInt(1000);
+
+            try {
+                    FileWriter myWriter = new FileWriter("/home/phabrzyk/IdeaProjects/untitled/filenam3",true);
+                    myWriter.write(String.valueOf(rand_int1));
+                myWriter.write("\n");
+                    System.out.println(rand_int1);
+                    myWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+//zad 9.3
+
+
+
+
+
+
+
+
+
+
+package com.company;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.nio.file.StandardOpenOption;
+
+class Main {
+    public static void main(String args[])
+    {
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println(" Podaj nazwe");
+
+        String userName = myObj.nextLine();  // Read user input
+        //userName = "/home/phabrzyk/IdeaProjects/untitled/filenam3";
+        //int num = Integer.valueOf(userName);
+
+        Random rand = new Random();
+        int rand_int1 = rand.nextInt(1000);
+            try {
+                    FileWriter myWriter = new FileWriter(userName,true);
+                    myWriter.write("Plskie znaKI: ąśżźćół");
+                myWriter.write("\n");
+                    System.out.println(rand_int1);
+                    myWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+    }
+}
+
+package com.company;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+import java.io.Writer;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+
+        
+class Main {
+    public static void main(String args[])
+    {
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println(" Podaj nazwe");
+
+        String userName = myObj.nextLine();  // Read user input
+        //userName = "/home/phabrzyk/IdeaProjects/untitled/filenam3";
+        //int num = Integer.valueOf(userName);
+
+
+
+        Random rand = new Random();
+        int rand_int1 = rand.nextInt(1000);
+            try {
+                Writer myWriter = new BufferedWriter(new OutputStreamWriter(
+                        new FileOutputStream("/home/phabrzyk/IdeaProjects/untitled/filenam3"), "UTF-8"));
+                try {
+                    myWriter.write("Plskie znaKI: ąśżźćół");
+                } finally {
+                    myWriter.close();
+                }
+                
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//zad 9.4
+
+
+
+
+
+
+
+
+
+
+public class ReadFile {
+  public static void main(String[] args) {
+    try {
+      File myObj = new File("filename.txt");
+      Scanner myReader = new Scanner(myObj);
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        System.out.println(data);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+}
+
+
+import java.nio.charset.StandardCharsets;
+
+  try (FileInputStream fis = new FileInputStream(file);
+       InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
+       BufferedReader reader = new BufferedReader(isr)
+  ) {
+
+      String str;
+      while ((str = reader.readLine()) != null) {
+          System.out.println(str);
+      }
+
+  } catch (IOException e) {
+      e.printStackTrace();
+  }
+  
+  
+  
+  
+  
+  
+  
+
+
+//zad 9.5
+
+
+
+
+
+
+
+package com.company;
+
+import java.util.Scanner;
+import java.lang.reflect.Array;
+
+class Algorytm
+{
+    void bubbleSort(int arr[])
+    {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++)
+            for (int j = 0; j < n-i-1; j++)
+                if (arr[j] > arr[j+1])
+                {
+                    // swap arr[j+1] and arr[j]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+    }
+
+    void printArray(int arr[])
+    {
+        int n = arr.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+    public static void main(String args[])
+    {
+        Algorytm ob = new Algorytm();
+        Scanner scan = new Scanner(System.in);
+        System.out.print("ile liczb");
+        int n = scan.nextInt();
+        int [] a = new int [n];
+        for(int i = 0;i<n;i++) {
+            a[i] = scan.nextInt();
+        }
+
+        ob.bubbleSort(a);
+        System.out.println("Sorted array");
+        ob.printArray(a);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//zad 9.6  zad 6 i 7 mają ten sam kod, jedyna różnica to nazwa plików z danymi
+
+
+
+
+
+
+
+
+
+
+
+
+package com.company;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+class Algorytm
+{
+    void bubbleSort(Integer arr[])
+    {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++)
+            for (int j = 0; j < n-i-1; j++)
+                if (arr[j] > arr[j+1])
+                {
+                    // swap arr[j+1] and arr[j]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+    }
+
+    void printArray(Integer arr[])
+    {
+        int n = arr.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+    void saveArray(Integer arr[]){
+        for(int j=0;j<arr.length;j++){
+
+        try {
+            FileWriter myWriter = new FileWriter("/home/phabrzyk/IdeaProjects/untitled/filenam3",true);
+            myWriter.write(String.valueOf(arr[j]));
+            myWriter.write("\n");
+            myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }}
+
+
+
+    public static void main(String args[])
+    {
+
+        Algorytm ob = new Algorytm();
+        Scanner scan = new Scanner(System.in);
+        //System.out.print("ile liczb");
+        //int n = scan.nextInt();
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        //int [] a = new int [20000];
+        int i =0;
+        try {
+            File myObj = new File("/home/phabrzyk/IdeaProjects/untitled/filenam3.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                a.add(Integer.parseInt(data));
+
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        Integer[] arr = new Integer[a.size()];
+        arr = a.toArray(arr);
+
+        ob.bubbleSort(arr);
+        System.out.println("Sorted array");
+        ob.printArray(arr);
+    }
+}
+
+
+
+
+
+
+
+
+
+//zad 9.7
+
+
+
+
+
+
+
+
+package com.company;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+class Algorytm
+{
+    void bubbleSort(Integer arr[])
+    {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++)
+            for (int j = 0; j < n-i-1; j++)
+                if (arr[j] > arr[j+1])
+                {
+                    // swap arr[j+1] and arr[j]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+    }
+
+    void printArray(Integer arr[])
+    {
+        int n = arr.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+    void saveArray(Integer arr[]){
+        for(int j=0;j<arr.length;j++){
+
+        try {
+            FileWriter myWriter = new FileWriter("/home/phabrzyk/IdeaProjects/untitled/wy.txt",true);
+            myWriter.write(String.valueOf(arr[j]));
+            myWriter.write("\n");
+            myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }}
+
+
+
+    public static void main(String args[])
+    {
+
+        Algorytm ob = new Algorytm();
+        Scanner scan = new Scanner(System.in);
+        //System.out.print("ile liczb");
+        //int n = scan.nextInt();
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        //int [] a = new int [20000];
+        int i =0;
+        try {
+            File myObj = new File("/home/phabrzyk/IdeaProjects/untitled/we.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                a.add(Integer.parseInt(data));
+
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        Integer[] arr = new Integer[a.size()];
+        arr = a.toArray(arr);
+
+        ob.bubbleSort(arr);
+        System.out.println("Sorted array");
+        ob.printArray(arr);
+    }
+}
+
+
+
+//zad 10.1
+
+package com.company;
+import java.awt.*;
+import java.awt.event.*;
+
+class ONP{
+    public ONP(){
+        Frame f=new Frame();
+        Label l1=new Label("Pawel habrzyk.");
+        Button b=new Button("click me");
+        b.setBounds(50,100,60,30);
+        Button c=new Button("click me");
+        c.setBounds(250,100,60,30);
+        Frame f2 = new Frame();
+        TextArea ta = new TextArea();
+        ta.setBounds(50, 50, 150, 150);
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+
+                f2.add(ta);
+                f2.add(c);
+                f2.setSize(300,300);
+                f2.setLayout(null);
+                f2.setVisible(true);
+            }
+
+        });
+
+        c.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String k=ta.getText();
+                Label l2 = new Label(k);
+                l2.setBounds(50,100, 100,30);
+                l1.setBounds(0,0,0,0);
+                f.add(l2);
+                f.setLayout(null);
+                f.setVisible(true);
+                System.out.print("sdsd");
+            }
+
+        });
+
+
+        l1.setBounds(50,100, 100,30);
+
+        b.setBounds(130,150,80,30);
+        f.add(l1);
+        f.add(b);
+        f.setSize(300,300);
+        f.setLayout(null);
+        f.setVisible(true);
+    }
+   }
+   
+   
+   
+package com.company;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+class Main {
+    public static void main(String args[])
+    {
+
+        ONP f=new ONP();
+
+    }
+}
+
+
+//zad 10.2
+
+
+package com.company;
+import java.awt.*;
+import java.awt.event.*;
+
+class ONP{
+    public ONP(){
+        Frame f=new Frame();
+        Label l1=new Label("Pawel habrzyk.");
+        Button b=new Button("licz");
+        b.setBounds(350,200,160,30);
+        Button c=new Button("click me");
+        c.setBounds(250,100,60,30);
+        Frame f2 = new Frame();
+        TextField tf = new TextField();
+        tf.setBounds(50, 50, 50, 50);
+        f.add(tf);
+
+        f.setSize(1000,1000);
+        f.setLayout(null);
+        f.setVisible(true);
+
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+
+                int r = Integer.parseInt(tf.getText());
+                if(r>=0) {
+                    double obwod = 2 * Math.PI * r;
+                    Label l2 = new Label(Double.toString(obwod));
+                    l2.setBounds(100, 100, 100, 30);
+                    l1.setBounds(0, 0, 0, 0);
+                    f.add(l2);
+                }
+            }
+
+        });
+
+
+
+
+        l1.setBounds(50,100, 100,30);
+
+        b.setBounds(130,150,80,30);
+        f.add(l1);
+        f.add(b);
+        f.setSize(300,300);
+        f.setLayout(null);
+        f.setVisible(true);
+    }
+   }
+   
+//zad 10.3
+
+package com.company;
+import java.awt.*;
+import java.awt.event.*;
+
+class ONP{
+    public ONP(){
+        Frame f=new Frame();
+        Label l1=new Label("Podaj r i l");
+        Button b=new Button("licz");
+        b.setBounds(350,200,160,30);
+        TextField tf = new TextField();
+        TextField tf2 = new TextField();
+        tf.setBounds(50, 50, 50, 50);
+        tf2.setBounds(150, 50, 50, 50);
+
+        f.add(tf);
+        f.add(tf2);
+
+        f.setSize(1000,1000);
+        f.setLayout(null);
+        f.setVisible(true);
+
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+
+                int r = Integer.parseInt(tf.getText());
+                int l = Integer.parseInt(tf2.getText());
+                if(r>=0 && l>r) {
+                    double pp = Math.PI * r*(r+l);
+                    Label l2 = new Label("PPc: "+ Double.toString(pp));
+                    l2.setBounds(100, 100, 100, 30);
+                    l1.setBounds(0, 0, 0, 0);
+                    f.add(l2);
+                }
+            }
+
+        });
+
+
+
+
+        l1.setBounds(50,100, 100,30);
+
+        b.setBounds(130,150,80,30);
+        f.add(l1);
+        f.add(b);
+        f.setSize(300,300);
+        f.setLayout(null);
+        f.setVisible(true);
+    }
+   }
+   
+   
+   
+   
+   
+   
+   
+//zad 10.4
+
+package com.company;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Arrays;
+
+class ONP{
+    public ONP(){
+        Frame f=new Frame();
+        Label l1=new Label("Podaj tekst. int+I, num=N,letter=A,space=S");
+        Button b=new Button("licz");
+        b.setBounds(350,200,160,30);
+        TextField tf = new TextField();
+        tf.setBounds(50, 50, 50, 50);
+
+        f.add(tf);
+
+        f.setSize(1000,1000);
+        f.setLayout(null);
+        f.setVisible(true);
+
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+
+                String str = tf.getText();
+                String ss="";
+                String inter = ",./?;:'{}[[]--_-+=";
+                char [] nums = "0123456789".toCharArray();
+                char[] alphabet = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
+
+                for (int i = 0; i < str.length(); i++) {
+                    if(Character.isDigit(str.charAt(i))){ss+="I";}
+                    else if(inter.contains(Character.toString(str.charAt(i)))){ss+="N";}
+                    else if(str.charAt(i)==' '){ss+="S";}
+                    else if(Character.isLetter(str.charAt(i))){ss+="A";
+                    }
+                    System.out.print("s");
+
+                }
+                System.out.print(ss);
+                Label l2=new Label(ss);
+                l2.setBounds(50,200, 100,30);
+                //l1.setBounds(0,0, 0,0);
+                f.add(l2);
+            }
+        });
+
+
+
+
+        l1.setBounds(50,100, 300,30);
+
+        b.setBounds(130,150,80,30);
+        f.add(l1);
+        f.add(b);
+        f.setSize(300,300);
+        f.setLayout(null);
+        f.setVisible(true);
+    }
+   }
+   
+//zad  10.5
+
+
+package com.company;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Arrays;
+
+class ONP{
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public ONP(){
+        Frame f=new Frame();
+        Button b=new Button("Wypisz");
+        b.setBounds(31,40,50,30);
+        f.setSize(1000,1000);
+        f.setLayout(null);
+        f.setVisible(true);
+        b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String ss = "";
+
+                for(int k=0;k<10000;k++){
+                    if(isPrime(k)){
+                        ss+=Integer.toString(k)+" ";
+                        System.out.print(k+" ");
+                    }
+                    if(k%100==0){
+                        ss+="\n";
+                        System.out.print("\n");
+                    }
+                }
+                //Label l2 = new Label("adasd");
+
+                TextArea tf = new TextArea(ss);
+                tf.setEditable(false);
+                tf.setText(ss);
+                tf.setBounds(100, 10, 1000, 1000);
+                b.setBounds(0, 0, 0, 0);
+                f.add(tf);
+            }
+        });
+        
+        f.add(b);
+
+        f.setLayout(null);
+        f.setVisible(true);
+    }
+   }
+
+
